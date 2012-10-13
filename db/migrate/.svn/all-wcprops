@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/9337/branches/1.4-stable/extra/sample_plugin/db/migrate
+END
+001_create_meetings.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/9337/branches/1.4-stable/extra/sample_plugin/db/migrate/001_create_meetings.rb
+END

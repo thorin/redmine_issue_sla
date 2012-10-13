@@ -1,0 +1,10 @@
+# Sample plugin
+pt:
+  project_module_redmine_issue_sla: Issues SLA
+  label_issue_sla: Issues SLA
+  field_allowed_delay: Allowed delay
+  field_expiration_date: Expiration date
+  field_expires: Expires
+  field_updated_by_manager: Updated by manager
+  expiration_satus_expired: Expired
+  expiration_satus_answered: Answered

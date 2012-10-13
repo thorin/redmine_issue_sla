@@ -1,0 +1,22 @@
+<%= form_tag({:controller => :issue_slas, :action => :update, :project_id => @project}, :method => :put, :class => "tabular") do %>
+<%  can_manage = User.current.allowed_to?(:manage_issue_sla, @project)  -%>
+<table class="list">
+  <thead><tr>
+    <th><%= l(:field_priority) %></th>
+    <th><%= l(:field_allowed_delay) %></th>
+  </tr></thead>
+
+  <% retrieve_slas(@project).sort_by(&:priority_id).each do |issue_sla| -%>
+  <tr class="<%= cycle('odd', 'even') %>">
+    <td>
+      <%= h(issue_sla.priority.name) %>
+    </td>
+    <td align="center" style="width:15%;">
+      <%= text_field_tag "issue_sla[#{issue_sla.priority_id}]", issue_sla.allowed_delay %> <%= l(:field_hours) %>
+    </td>
+  </tr>
+  <% end %>
+
+</table>
+<%= submit_tag l(:button_save) %>
+<% end %>

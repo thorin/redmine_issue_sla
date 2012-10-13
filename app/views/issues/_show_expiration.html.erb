@@ -1,0 +1,8 @@
+<% if @issue.expiration_date.present? && User.current.allowed_to?(:view_issue_sla, @project) -%>
+<tr>
+  <th><%=l :field_expiration %>:</th>
+  <td><%= expiration_in_words(@issue) %></td>
+  <th><%=l :field_issue_sla %>:</th>
+  <td><%=l 'datetime.distance_in_words.x_hours', :count => @issue.issue_sla.allowed_delay %></td>
+</tr>
+<% end %>
