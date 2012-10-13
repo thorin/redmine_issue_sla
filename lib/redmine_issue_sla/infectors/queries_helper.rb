@@ -17,7 +17,7 @@ module RedmineIssueSla
             # distance_of_time_in_words(now, value)
             l('datetime.distance_in_words.x_hours', :count => ((value - now)/1.hour).round(2))
           else
-            l(:expiration_satus_overdued)
+            l(:expiration_satus_overdue)
           end
         end
 
@@ -30,7 +30,7 @@ module RedmineIssueSla
             l(:expiration_satus_expires_in_x_time, time)
           else
             time = distance_of_time_in_words_to_now(issue.expiration_date, true)
-            l(:expiration_satus_expired_x_time_ago, time)
+            l(:expiration_satus_x_time_overdue, time)
           end
         end
 

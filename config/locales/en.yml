@@ -7,7 +7,7 @@ en:
   field_expiration: Expiration
   field_issue_sla: Issue SLA
   field_update_by_manager_date: Updated by manager
-  expiration_satus_overdue: Overdued
+  expiration_satus_overdue: Overdue
   expiration_satus_expires_in_x_time: Expires in %{value}
-  expiration_satus_expired_x_time_ago: Expired %{value} ago
+  expiration_satus_x_time_overdue: '%{value} overdue'
   expiration_satus_answered_after_x_time: Answered after %{value}
