@@ -17,10 +17,6 @@ end
 
 RedmineApp::Application.config.after_initialize do
   require_dependency 'redmine_issue_sla/infectors'
-  
-  Query.add_available_column(
-    QueryColumn.new(:expiration_date, :sortable => ["#{Issue.table_name}.expiration_date"], :groupable => false)
-  )
 end
 
 # hooks

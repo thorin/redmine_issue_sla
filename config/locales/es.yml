@@ -3,8 +3,12 @@ es:
   project_module_redmine_issue_sla: Issues SLA
   label_issue_sla: Issues SLA
   field_allowed_delay: Allowed delay
-  field_expiration_date: Expiration date
-  field_expires: Expires
-  field_updated_by_manager: Updated by manager
-  expiration_satus_expired: Expired
-  expiration_satus_answered: Answered
+  field_expiration_date: Expiration
+  field_expiration: Expiration
+  field_issue_sla: Issue SLA
+  field_update_by_manager_date: Updated by manager
+  expiration_status_overdue: Overdue
+  expiration_status_replied: Replied
+  expiration_status_expires_in_x_time: Expires in %{value}
+  expiration_status_x_time_overdue: '%{value} overdue'
+  expiration_status_replied_in_x_time: Replied in %{value}
