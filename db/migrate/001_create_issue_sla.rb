@@ -1,5 +1,3 @@
-# Sample plugin migration
-# Use rake db:migrate_plugins to migrate installed plugins
 class CreateIssueSla < ActiveRecord::Migration
   def self.up
     create_table :issue_slas, :force => true do |t|
