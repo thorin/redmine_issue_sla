@@ -1,6 +1,6 @@
 module RedmineIssueSla
   module Infectors
-    module Query
+    module IssueQuery
       module ClassMethods; end
   
       module InstanceMethods

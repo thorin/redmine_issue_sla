@@ -3,7 +3,7 @@
 <table class="list">
   <thead><tr>
     <th><%= l(:field_priority) %></th>
-    <th><%= l(:field_allowed_delay) %></th>
+    <th width="30%"><%= l(:field_allowed_delay) %></th>
   </tr></thead>
 
   <% retrieve_slas(@project).sort_by(&:priority_id).each do |issue_sla| -%>
@@ -11,7 +11,7 @@
     <td>
       <%= h(issue_sla.priority.name) %>
     </td>
-    <td align="center" style="width:15%;">
+    <td align="center">
       <%= text_field_tag "issue_sla[#{issue_sla.priority_id}]", issue_sla.allowed_delay %> <%= l(:field_hours) %>
     </td>
   </tr>
