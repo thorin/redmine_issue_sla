@@ -7,6 +7,7 @@ Redmine::Plugin.register :redmine_issue_sla do
   author 'Ricardo Santos'
   description 'Show SLA information for support tickets'
   version '1.0.0'
+  requires_redmine :version_or_higher => '2.2.0.devel'
 
   project_module :redmine_issue_sla do
     permission :view_issue_sla, {:issues => [:index, :show]}, :require => :member
