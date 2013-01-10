@@ -16,8 +16,8 @@ module RedmineIssueSla
           issue.assign_attributes attrs, :without_protection => true
         end
       end
-      if user.allowed_to?(:be_project_manager, issue.project)
-        attrs = { :update_by_manager_date => Time.now }
+      if user.allowed_to?(:be_project_manager, issue.project) && !issue.update_by_manager_date
+        attrs = { :update_by_manager_date => Time.at(Time.now.to_i) }
         issue.assign_attributes attrs, :without_protection => true
         issue.attributes_before_change['update_by_manager_date'] = issue.update_by_manager_date if issue.attributes_before_change
         Rails.logger.debug("Attrs - #{issue.attributes_before_change}")
