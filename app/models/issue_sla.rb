@@ -12,13 +12,15 @@ class IssueSla < ActiveRecord::Base
   private
   def update_issues
     project.issues.open.where(:priority_id => priority.id).all.each do |issue|
-      next if issue.update_by_manager_date.present?
+      next if issue.first_response_date.present?
       
       date = nil
       if allowed_delay.present?
         date = allowed_delay.hours.since issue.created_on
       end
-      issue.update_attributes(:expiration_date => date) if issue.expiration_date != date
+      if issue.expiration_date != date
+        issue.update_attributes(:expiration_date => date, :issue_sla => allowed_delay) 
+      end
     end
   end
 end

@@ -20,7 +20,7 @@ module RedmineIssueSla
             next if slas.any? {|s| s.priority_id == p.id }
             sla = IssueSla.create(:priority => p, :project=> project)
           end
-          project.issue_slas
+          project.issue_slas.reload
         end
       end
 

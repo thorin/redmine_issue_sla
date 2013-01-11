@@ -6,7 +6,7 @@ module RedmineIssueSla
       module InstanceMethods
         attr_accessor :attributes_before_change
 
-        def issue_sla
+        def priority_issue_sla
           priority.issue_slas.where(:project_id => project_id).first
         end
       end

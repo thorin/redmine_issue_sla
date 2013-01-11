@@ -11,7 +11,7 @@ module RedmineIssueSla
           end
 
           now = Time.now
-          if !issue.update_by_manager_date.nil?
+          if !issue.first_response_date.nil?
             l(:expiration_status_replied)
           elsif value.future?
             # distance_of_time_in_words(now, value)
@@ -22,8 +22,8 @@ module RedmineIssueSla
         end
 
         def _expiration_in_words(issue)
-          if issue.update_by_manager_date.present?
-            time = distance_of_time_in_words(issue.created_on, issue.update_by_manager_date, true)
+          if issue.first_response_date.present?
+            time = distance_of_time_in_words(issue.created_on, issue.first_response_date, true)
             l(:expiration_status_replied_in_x_time, time)
           elsif issue.expiration_date.future?
             time = distance_of_time_in_words_to_now(issue.expiration_date, true)
