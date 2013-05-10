@@ -16,9 +16,11 @@ class IssueSla < ActiveRecord::Base
       
       date = nil
       if allowed_delay.present?
-        date = allowed_delay.hours.since issue.created_on
+        date = allowed_delay.hours.since(issue.created_on).round
       end
       if issue.expiration_date != date
+        issue.init_journal(User.current)
+        issue.attributes_before_change['expiration_date'] = date
         issue.update_attributes(:expiration_date => date, :issue_sla => allowed_delay) 
       end
     end
