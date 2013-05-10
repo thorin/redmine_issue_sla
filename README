@@ -1,6 +1,6 @@
-== Sample plugin
+== Redmine ISSUE SLA plugin
 
-This is a sample plugin for Redmine
+Redmine's plugin to allow to assign an SLA by issue priority and project.
 
 == Installation
 
