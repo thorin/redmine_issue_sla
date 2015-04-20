@@ -2,12 +2,12 @@ module RedmineIssueSla
   module Infectors
     module QueriesHelper
       module ClassMethods; end
-  
+
       module InstanceMethods
 
         def column_value_with_issue_sla(column, issue, value)
           if column.name != :expiration_date || value.class.name != 'Time'
-            return column_value_without_issue_sla(column, issue, value) 
+            return column_value_without_issue_sla(column, issue, value)
           end
 
           now = Time.now
@@ -23,13 +23,13 @@ module RedmineIssueSla
 
         def _expiration_in_words(issue)
           if issue.first_response_date.present?
-            time = distance_of_time_in_words(issue.created_on, issue.first_response_date, true)
+            time = distance_of_time_in_words(issue.created_on, issue.first_response_date, :include_seconds => true)
             l(:expiration_status_replied_in_x_time, time)
           elsif issue.expiration_date.future?
-            time = distance_of_time_in_words_to_now(issue.expiration_date, true)
+            time = distance_of_time_in_words_to_now(issue.expiration_date, :include_seconds => true)
             l(:expiration_status_expires_in_x_time, time)
           else
-            time = distance_of_time_in_words_to_now(issue.expiration_date, true)
+            time = distance_of_time_in_words_to_now(issue.expiration_date, :include_seconds => true)
             l(:expiration_status_x_time_overdue, time)
           end
         end
@@ -46,5 +46,5 @@ module RedmineIssueSla
         end
       end
     end
-  end 
+  end
 end

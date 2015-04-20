@@ -3,6 +3,6 @@
   <th><%=l :field_expiration %>:</th>
   <td><%= expiration_in_words(@issue) %></td>
   <th><%=l :field_issue_sla %>:</th>
-  <td><%=l('datetime.distance_in_words.x_hours', :count => @issue.issue_sla) if @issue.issue_sla %></td>
+  <td><%= l('datetime.distance_in_words.x_hours', :count => @issue.issue_sla) if @issue.issue_sla %></td>
 </tr>
 <% end %>

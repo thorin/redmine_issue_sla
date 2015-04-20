@@ -3,7 +3,7 @@ module RedmineIssueSla
     def controller_issues_new_before_save(context)
       save_expiration_date(context[:issue])
     end
-    
+
     def controller_issues_edit_before_save(context)
       save_expiration_date(context[:issue])
     end
@@ -14,7 +14,7 @@ module RedmineIssueSla
       case detail.prop_key
       when 'issue_sla'
         value = detail.value; old_value = detail.old_value
-        
+
         if value
           detail.value = l('datetime.distance_in_words.x_hours', :count => value)
         end
@@ -30,7 +30,7 @@ module RedmineIssueSla
       def save_expiration_date(issue, user = User.current)
         return if issue.first_response_date
 
-        previous_values = issue.attributes_before_change
+        previous_values = issue.current_journal.attributes_before_change
 
         if user.allowed_to?(:add_issues, issue.project) && (issue.new_record? || issue.priority_id != previous_values['priority_id'])
             sla = issue.priority_issue_sla
@@ -47,9 +47,9 @@ module RedmineIssueSla
           previous_values['first_response_date'] = issue.first_response_date if previous_values
         end
       end
-    
+
   end
-  
+
   class ViewHooks < Redmine::Hook::ViewListener
     render_on :view_issues_show_details_bottom, :partial => "issues/show_expiration"
   end

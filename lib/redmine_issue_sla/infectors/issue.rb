@@ -2,7 +2,7 @@ module RedmineIssueSla
   module Infectors
     module Issue
       module ClassMethods; end
-  
+
       module InstanceMethods
         attr_accessor :attributes_before_change
 
