@@ -30,7 +30,11 @@ module RedmineIssueSla
       def save_expiration_date(issue, user = User.current)
         return if issue.first_response_date
 
-        previous_values = issue.current_journal.attributes_before_change
+        if issue.try(:current_journal).try(:attributes_before_change)
+          previous_values = issue.current_journal.attributes_before_change
+        else
+          previous_values = {}
+        end
 
         if user.allowed_to?(:add_issues, issue.project) && (issue.new_record? || issue.priority_id != previous_values['priority_id'])
             sla = issue.priority_issue_sla
