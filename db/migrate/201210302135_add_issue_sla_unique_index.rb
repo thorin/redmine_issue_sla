@@ -4,6 +4,6 @@ class AddIssueSlaUniqueIndex < ActiveRecord::Migration
   end
 
   def self.down
-    drop_index :issue_slas, [:project_id, :priority_id]
+    remove_index :issue_slas, [:project_id, :priority_id]
   end
 end
