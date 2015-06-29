@@ -11,7 +11,7 @@ class CreateIssueSla < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :issue_sla
+    drop_table :issue_slas
     
     remove_column :issues, :expiration_date
     remove_column :issues, :update_by_manager_date
