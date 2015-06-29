@@ -9,8 +9,6 @@ class RenameColumnsAndAddIssueSlaToIssue < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :issue_sla
-    
     remove_column :issues, :issue_sla
     rename_column :issues, :first_response_date, :update_by_manager_date
   end
