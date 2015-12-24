@@ -1,8 +1,18 @@
 <% if @issue.expiration_date.present? && User.current.allowed_to?(:view_issue_sla, @project, :global => true) -%>
+<% if Redmine::VERSION.to_s >= '3.2'
+sla_value = ''
+sla_value = l('datetime.distance_in_words.x_hours', :count => @issue.issue_sla) if @issue.issue_sla
+%>
+<%= issue_fields_rows do |rows|
+  rows.send :left, l(:field_expiration), expiration_in_words(@issue), class: 'expiration'
+  rows.send :right, l(:field_issue_sla),  sla_value, class: 'issue-sla'
+end %>
+<% else %>
 <tr>
   <th><%=l :field_expiration %>:</th>
   <td><%= expiration_in_words(@issue) %></td>
   <th><%=l :field_issue_sla %>:</th>
   <td><%= l('datetime.distance_in_words.x_hours', :count => @issue.issue_sla) if @issue.issue_sla %></td>
 </tr>
+<% end %>
 <% end %>
