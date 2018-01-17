@@ -10,7 +10,14 @@ module RedmineIssueSla
             available_filters_without_issue_sla
 
             if User.current.allowed_to?(:view_issue_sla, project, :global => true)
-              @available_filters["expiration_date"] = { :name => l("field_expiration_date") , :type => :date, :order => 5.5}
+              field = "expiration_date"
+              options = {
+                  type: :date,
+                  order: 5.5,
+                  name: l("field_expiration_date")
+              }
+              @available_filters = ActiveSupport::OrderedHash.new
+              @available_filters[field] = QueryFilter.new(field, options)
             end
 
             @available_filters
