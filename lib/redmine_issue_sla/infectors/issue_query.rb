@@ -16,7 +16,6 @@ module RedmineIssueSla
                   order: 5.5,
                   name: l("field_expiration_date")
               }
-              @available_filters = ActiveSupport::OrderedHash.new
               @available_filters[field] = QueryFilter.new(field, options)
             end
 
