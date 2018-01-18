@@ -1,5 +1,5 @@
 # Sample plugin
-en:
+ru:
   project_module_redmine_issue_sla: SLA задачи
   label_issue_sla: SLA задачи
   field_allowed_delay: Допустимая задержка
