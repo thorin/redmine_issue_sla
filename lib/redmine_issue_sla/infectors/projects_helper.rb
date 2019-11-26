@@ -3,10 +3,10 @@ module RedmineIssueSla
     module ProjectsHelper
       module ClassMethods; end
 
-      #module InstanceMethods
+      module InstanceMethods
         def project_settings_tabs
           tabs = super
-          #return tabs unless @project.module_enabled?('redmine_issue_sla')
+          return tabs unless @project.module_enabled?('redmine_issue_sla')
 
           if User.current.allowed_to?(:manage_issue_sla, @project)
             tabs << {:name => 'issue_sla', :action  => :manage_issue_sla, :partial => 'projects/settings/issue_sla', :label => :label_issue_sla}
@@ -22,7 +22,7 @@ module RedmineIssueSla
           end
           project.issue_slas.reload
         end
-      #end
+      end
 
       #def self.included(receiver)
       #  receiver.extend         ClassMethods
