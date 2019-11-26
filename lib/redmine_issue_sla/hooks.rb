@@ -40,14 +40,14 @@ module RedmineIssueSla
             sla = issue.priority_issue_sla
             if sla && sla.allowed_delay.present?
               attrs = { :expiration_date => sla.allowed_delay.hours.from_now.round, :issue_sla => sla.allowed_delay }
-              issue.assign_attributes attrs, :without_protection => true
+              issue.assign_attributes attrs #, :without_protection => true
               previous_values['expiration_date'] = issue.expiration_date if previous_values
             end
         end
 
         if user.allowed_to?(:be_project_manager, issue.project) && (issue.new_record? || issue.status_id != previous_values['status_id'])
           attrs = { :first_response_date => Time.now.round }
-          issue.assign_attributes attrs, :without_protection => true
+          issue.assign_attributes attrs #, :without_protection => true
           previous_values['first_response_date'] = issue.first_response_date if previous_values
         end
       end
