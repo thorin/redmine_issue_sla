@@ -42,8 +42,8 @@ module RedmineIssueSla
         receiver.class_eval do
           unloadable
           #alias_method_chain :column_value, :issue_sla
-          alias_method :project_settings_tabs_without_issue_slas, :column_value
-          alias_method :column_value, :project_settings_tabs_with_issue_slas          
+          alias_method :column_value_without_issue_slas, :column_value
+          alias_method :column_value, :column_value_with_issue_slas          
           alias_method :expiration_in_words, :_expiration_in_words
         end
       end
