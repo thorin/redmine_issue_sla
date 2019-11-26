@@ -1,13 +1,13 @@
 module RedmineIssueSla
-  module Infectors
+  #module Infectors
     module QueriesHelper
       module ClassMethods; end
 
-      module InstanceMethods
+      #module InstanceMethods
 
-        def column_value_with_issue_sla(column, issue, value)
+        def column_value(column, issue, value)
           if column.name != :expiration_date || value.class.name != 'Time'
-            return column_value_without_issue_sla(column, issue, value)
+            return super(column, issue, value)
           end
 
           now = Time.now
@@ -21,7 +21,7 @@ module RedmineIssueSla
           end
         end
 
-        def _expiration_in_words(issue)
+        def expiration_in_words(issue)
           if issue.first_response_date.present?
             time = distance_of_time_in_words(issue.created_on, issue.first_response_date, :include_seconds => true)
             l(:expiration_status_replied_in_x_time, time)
@@ -34,17 +34,19 @@ module RedmineIssueSla
           end
         end
 
-      end
+      #end
 
-      def self.included(receiver)
-        receiver.extend         ClassMethods
-        receiver.send :include, InstanceMethods
-        receiver.class_eval do
-          unloadable
-          alias_method_chain :column_value, :issue_sla
-          alias_method :expiration_in_words, :_expiration_in_words
-        end
-      end
+      #def self.included(receiver)
+      #  receiver.extend         ClassMethods
+      #  receiver.send :include, InstanceMethods
+      #  receiver.class_eval do
+      #    unloadable
+      #    alias_method_chain :column_value, :issue_sla
+      #    alias_method :expiration_in_words, :_expiration_in_words
+      #  end
+      #end
     end
-  end
+  #end
 end
+
+QueriesHelper.prepend RedmineIssueSla::QueriesHelper
