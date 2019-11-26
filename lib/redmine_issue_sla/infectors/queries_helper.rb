@@ -1,5 +1,5 @@
 module RedmineIssueSla
-  #module Infectors
+  module Infectors
     module QueriesHelper
       module ClassMethods; end
 
@@ -46,7 +46,7 @@ module RedmineIssueSla
       #  end
       #end
     end
-  #end
+  end
 end
 
-QueriesHelper.prepend RedmineIssueSla::QueriesHelper
+QueriesHelper.prepend RedmineIssueSla::Infectors::QueriesHelper
