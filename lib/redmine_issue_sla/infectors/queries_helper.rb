@@ -21,7 +21,7 @@ module RedmineIssueSla
           end
         end
 
-        def expiration_in_words(issue)
+        def _expiration_in_words(issue)
           if issue.first_response_date.present?
             time = distance_of_time_in_words(issue.created_on, issue.first_response_date, :include_seconds => true)
             l(:expiration_status_replied_in_x_time, time)
