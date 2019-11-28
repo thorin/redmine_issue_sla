@@ -5,9 +5,9 @@ module RedmineIssueSla
 
       module InstanceMethods
 
-        def column_value_with_issue_sla(column, issue, value)
+        def column_value_with_issue_slas(column, issue, value)
           if column.name != :expiration_date || value.class.name != 'Time'
-            return column_value_without_issue_sla(column, issue, value)
+            return column_value_without_issue_slas(column, issue, value)
           end
 
           now = Time.now
@@ -41,10 +41,14 @@ module RedmineIssueSla
         receiver.send :include, InstanceMethods
         receiver.class_eval do
           unloadable
-          alias_method_chain :column_value, :issue_sla
+          #alias_method_chain :column_value, :issue_sla
+          alias_method :column_value_without_issue_slas, :column_value
+          alias_method :column_value, :column_value_with_issue_slas          
           alias_method :expiration_in_words, :_expiration_in_words
         end
       end
     end
   end
 end
+
+#QueriesHelper.prepend RedmineIssueSla::Infectors::QueriesHelper

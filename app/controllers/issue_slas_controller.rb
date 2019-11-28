@@ -2,8 +2,8 @@
 class IssueSlasController < ApplicationController
   unloadable
 
-  before_filter :find_project_by_project_id
-  before_filter :authorize, :only => [:update]
+  before_action :find_project_by_project_id
+  before_action :authorize, :only => [:update]
 
   def update
     params[:issue_sla].each do |priority_id, allowed_delay|

@@ -1,4 +1,4 @@
-class RenameColumnsAndAddIssueSlaToIssue < ActiveRecord::Migration
+class RenameColumnsAndAddIssueSlaToIssue < ActiveRecord::Migration[5.1]
   def self.up
     add_column :issues, :issue_sla, :float
     rename_column :issues, :update_by_manager_date, :first_response_date

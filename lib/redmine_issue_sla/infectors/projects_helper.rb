@@ -29,10 +29,14 @@ module RedmineIssueSla
         receiver.send :include, InstanceMethods
         receiver.class_eval do
           unloadable
-          alias_method_chain :project_settings_tabs, :issue_sla
+          #alias_method_chain :project_settings_tabs, :issue_sla
+          alias_method :project_settings_tabs_without_issue_sla, :project_settings_tabs
+          alias_method :project_settings_tabs, :project_settings_tabs_with_issue_sla          
           alias_method :retrieve_slas, :_retrieve_slas
         end
       end
     end
   end
 end
+
+#ProjectsHelper.prepend RedmineIssueSla::Infectors::ProjectsHelper

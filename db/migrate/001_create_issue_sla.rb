@@ -1,4 +1,4 @@
-class CreateIssueSla < ActiveRecord::Migration
+class CreateIssueSla < ActiveRecord::Migration[5.1]
   def self.up
     create_table :issue_slas, :force => true do |t|
       t.integer :project_id, :null => false

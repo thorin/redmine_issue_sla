@@ -44,11 +44,18 @@ module RedmineIssueSla
         receiver.class_eval do
           unloadable
 
-          alias_method_chain :available_filters, :issue_sla
-          alias_method_chain :available_columns, :issue_sla
+          #alias_method_chain :available_filters, :issue_sla
+          #alias_method_chain :available_columns, :issue_sla
+          alias_method :available_filters_without_issue_sla, :available_filters
+          alias_method :available_filters, :available_filters_with_issue_sla
+          
+          alias_method :available_columns_without_issue_sla, :available_columns
+          alias_method :available_columns, :available_columns_with_issue_sla          
         end
       end
 
     end
   end
 end
+
+#Issue.prepend RedmineIssueSla::Infectors::IssueQuery

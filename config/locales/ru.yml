@@ -1,0 +1,14 @@
+# Sample plugin
+ru:
+  project_module_redmine_issue_sla: SLA задачи
+  label_issue_sla: SLA задачи
+  field_allowed_delay: Допустимая задержка
+  field_expiration_date: Дата окончания
+  field_expiration: Окончание
+  field_issue_sla: SLA
+  field_update_by_manager_date: Обновлено менеджером
+  expiration_status_overdue: Просроченный
+  expiration_status_replied: Среагировано
+  expiration_status_expires_in_x_time: До просрочки %{value}
+  expiration_status_x_time_overdue: '%{value} просроченно'
+  expiration_status_replied_in_x_time: Среагировано %{value}

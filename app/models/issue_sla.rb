@@ -5,7 +5,7 @@ class IssueSla < ActiveRecord::Base
   validates_presence_of :priority, :project
   validates_numericality_of :allowed_delay, :allow_nil => true
 
-  attr_protected :priority_id, :project_id
+  #attr_protected :priority_id, :project_id
 
   before_save :update_issues
 
